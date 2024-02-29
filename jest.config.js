@@ -82,7 +82,7 @@ const config = {
     "mjs",
     "cjs",
     // "jsx",
-    // "ts",
+    "ts",
     // "tsx",
     "json",
     // "node"
@@ -155,12 +155,15 @@ const config = {
 
   // The glob patterns Jest uses to detect test files
   testMatch: [
-    "**/?(*.)+(spec|test).([tj]|mj)s?(x)"
+    "**/src/**/*.?(*.)+(spec|test).([tj]|mj)s?(x)"
   ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   testPathIgnorePatterns: [
-    "/node_modules/"
+    "/node_modules/",
+    "/lib/",
+    "/benchmarks/",
+    "/\.rollup\.cache/"
   ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
@@ -173,13 +176,17 @@ const config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  transform: {},
+  transform: {
+    '^.+\\.(t|j)sx?$': '@swc/jest',
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/",
-  //   "\\.pnp\\.[^\\/]+$"
-  // ],
+  transformIgnorePatterns: [
+    "/node_modules/",
+    "/lib/",
+    "/benchmarks/",
+    "/\.rollup\.cache/"
+  ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,

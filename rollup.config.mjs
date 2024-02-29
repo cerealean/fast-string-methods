@@ -2,23 +2,23 @@ import { minify } from 'uglify-js';
 
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import ts from "rollup-plugin-ts";
 
-import pkg from './package.json' assert { type: 'json' };
-import { RollupOptions } from 'rollup';
+import pkg from './package.json' assert {type: 'json'};
 
+/** @type {import('rollup').RollupOptions} */
 const commonOutputOptions = {
   name: "fast-string-methods",
   compact: true,
-  banner: `/** @preserve ${pkg.name} version ${
-    pkg.version
-  }, generated on ${new Date().toUTCString()} */\n`,
+  banner: `/** @preserve ${pkg.name} version ${pkg.version
+    }, generated on ${new Date().toUTCString()} */\n`,
   sourcemap: true,
-} as Partial<RollupOptions>;
+};
 
 function minifyCode() {
   return {
     name: "rollup-plugin-minify", // this name will show up in logs and errors
-    renderChunk(code: string) {
+    renderChunk(code) {
       const result = minify(code, {
         toplevel: true,
         compress: {
@@ -45,6 +45,7 @@ function minifyCode() {
   };
 }
 
+/** @type {import('rollup').RollupOptions} */
 export default [
   {
     input: "src/main.ts",
@@ -52,6 +53,12 @@ export default [
     plugins: [
       resolve(), // so Rollup can find `ms`
       commonjs(), // so Rollup can convert `ms` to an ES module
+      ts({
+        transpiler: 'swc',
+        browserslist: {
+          path: './.browserslistrc'
+        }
+      }),
       minifyCode(),
     ],
     output: [
@@ -75,4 +82,4 @@ export default [
       },
     ],
   },
-] as RollupOptions;
+];
