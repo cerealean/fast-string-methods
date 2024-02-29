@@ -5,16 +5,19 @@ import {
   } from '@jest/globals';
 import { endsWith } from './endsWith.mjs';
 
+const testSentence1 = 'Car safety systems have come a long way, but he was out to prove they could be outsmarted.';
+const testSentence2 = 'Various sea birds are elegant, but nothing is as elegant as a gliding pelican.';
+
 describe('endsWith', () => {
     it.each([
-        ['Car safety systems have come a long way, but he was out to prove they could be outsmarted.', 'outsmarted.'],
-        ['Car safety systems have come a long way, but he was out to prove they could be outsmarted.', ' outsmarted.'],
-        ['Car safety systems have come a long way, but he was out to prove they could be outsmarted.', 'ted.'],
-        ['Car safety systems have come a long way, but he was out to prove they could be outsmarted.', '.'],
-        ['Various sea birds are elegant, but nothing is as elegant as a gliding pelican.', 'pelican.'],
-        ['Various sea birds are elegant, but nothing is as elegant as a gliding pelican.', 'n.'],
-        ['Various sea birds are elegant, but nothing is as elegant as a gliding pelican.', 'lican.'],
-        ['Various sea birds are elegant, but nothing is as elegant as a gliding pelican.', 'a gliding pelican.'],
+        [testSentence1, 'outsmarted.'],
+        [testSentence1, ' outsmarted.'],
+        [testSentence1, 'ted.'],
+        [testSentence1, '.'],
+        [testSentence2, 'pelican.'],
+        [testSentence2, 'n.'],
+        [testSentence2, 'lican.'],
+        [testSentence2, 'a gliding pelican.'],
         ['It was difficult for Mary to admit that most of her workout consisted of exercising poor judgment.', 'judgment.'],
         ['It was difficult for Mary to admit that most of her workout consisted of exercising poor judgment.', 't.'],
         ['It was difficult for Mary to admit that most of her workout consisted of exercising poor judgment.', 'exercising poor judgment.'],
