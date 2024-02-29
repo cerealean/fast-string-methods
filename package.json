@@ -11,7 +11,8 @@
     "pretest": "npm run build",
     "prebuild": "rm -rf ./lib",
     "build": "rollup -c",
-    "dev": "npm run build -- -w"
+    "dev": "npm run build -- -w",
+    "benchmark-test": "node ./benchmarks/startsWith/startsWith.mjs"
   },
   "keywords": [
     "string",
