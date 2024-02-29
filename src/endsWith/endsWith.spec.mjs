@@ -23,6 +23,14 @@ describe('endsWith', () => {
         [testSentence3, 't.'],
         [testSentence3, 'exercising poor judgment.'],
         [testSentence3, testSentence3],
+        ['',''],
+        ['  ', ' '],
+        [' ', ' '],
+        ['aa', 'a'],
+        ['something yes', ''],
+        ['a', ''],
+        [' ', ''],
+        ['. ', ''],
     ])('should return true if the string %p ends with the search string %p', (strToEvaluate, searchString) => {
         const actual = endsWith(strToEvaluate, searchString);
 
@@ -43,6 +51,9 @@ describe('endsWith', () => {
         [testSentence3, 'T.'],
         [testSentence3, 'eXercising poor judgmenT.'],
         [testSentence3, testSentence3 + 'a'],
+        ['short sentence', 'short'],
+        ['', 'empty'],
+        ['', 'e']
     ])('should return false if the string %p does not end with the search string %p', (strToEvaluate, searchString) => {
         const actual = endsWith(strToEvaluate, searchString);
 
