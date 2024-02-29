@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 
 import pkg from './package.json' assert { type: 'json' };
+import { RollupOptions } from 'rollup';
 
 const commonOutputOptions = {
   name: "fast-string-methods",
@@ -12,12 +13,12 @@ const commonOutputOptions = {
     pkg.version
   }, generated on ${new Date().toUTCString()} */\n`,
   sourcemap: true,
-};
+} as Partial<RollupOptions>;
 
 function minifyCode() {
   return {
     name: "rollup-plugin-minify", // this name will show up in logs and errors
-    renderChunk(code) {
+    renderChunk(code: string) {
       const result = minify(code, {
         toplevel: true,
         compress: {
@@ -46,7 +47,7 @@ function minifyCode() {
 
 export default [
   {
-    input: "src/main.mjs",
+    input: "src/main.ts",
     external: ["ms"],
     plugins: [
       resolve(), // so Rollup can find `ms`
@@ -74,4 +75,4 @@ export default [
       },
     ],
   },
-];
+] as RollupOptions;
