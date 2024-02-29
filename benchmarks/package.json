@@ -1,0 +1,8 @@
+{
+    "name": "fast-string-methods-benchmarks",
+    "private": true,
+    "devDependencies": {
+        "fast-string-methods": "file:../lib"
+    },
+    "type": "module"
+}

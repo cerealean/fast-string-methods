@@ -13,6 +13,7 @@ const commonOutputOptions = {
   banner: `/** @preserve ${pkg.name} version ${pkg.version
     }, generated on ${new Date().toUTCString()} */\n`,
   sourcemap: true,
+  
 };
 
 function minifyCode() {
