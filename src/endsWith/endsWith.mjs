@@ -5,5 +5,6 @@
  * @returns {boolean}
  */
 export function endsWith(str, searchString) {
-    return str.indexOf(searchString) === (str.length - searchString.length);
+    const index = str.indexOf(searchString);
+    return index !== -1 && index === (str.length - searchString.length);
 }
